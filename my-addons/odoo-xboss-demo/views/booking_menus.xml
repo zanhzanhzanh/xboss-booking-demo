@@ -1,0 +1,10 @@
+<odoo>
+    <menuitem id="booking_menu_root" name="Booking">
+        <menuitem id="stations_menu" name="Stations" action="station_action"/>
+        <menuitem id="visitors_menu" name="Visitors" action="visitor_action"/>
+        <menuitem id="drinks_graph_menu" name="Reporting" action="drink_graph_action"/>
+        <menuitem id="configuration_menu" name="Configuration">
+            <menuitem id="drinks_menu" name="Drinks" action="drink_action"/>
+        </menuitem>
+    </menuitem>
+</odoo>

@@ -1,0 +1,71 @@
+<odoo>
+    <record id="visitor_action" model="ir.actions.act_window">
+        <field name="name">Visitors</field>
+        <field name="res_model">booking.visitor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="view_booking_visitor_list" model="ir.ui.view">
+        <field name="name">booking.visitor.list</field>
+        <field name="model">booking.visitor</field>
+        <field name="arch" type="xml">
+            <tree string="Visitor">
+                <field name="name"/>
+                <field name="company"/>
+                <field name="phone"/>
+                <field name="drinks_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="host"/>
+                <field name="checkin"/>
+                <field name="duration" widget="float_time"/>
+                <field name="station_id"/>
+                <field name="isServeDrink" optional="hide"/>
+                <field name="statusCheckin" decoration-info="statusCheckin == 'planned'"
+                                            decoration-success="statusCheckin == 'checkedin'"
+                                            decoration-muted="statusCheckin == 'checkedout'"
+                                            decoration-danger="statusCheckin == 'cancelled'"
+                />
+
+                <button name="action_checkout" type="object" class="btn-warning" string="Check out"
+                        attrs="{'invisible': [('statusCheckin', '!=', 'checkedin')]}"/>
+                <button name="action_serve_drink" type="object" class="btn-outline-primary" string="Drink Served"
+                        attrs="{'invisible': [('isServeDrink', '==', True)]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_booking_visitor_form" model="ir.ui.view">
+        <field name="name">booking.visitor.form</field>
+        <field name="model">booking.visitor</field>
+        <field name="arch" type="xml">
+            <form string="Property Type">
+                <header>
+                    <field name="statusCheckin" widget="statusbar" statusbar_visible="planned, checkedin, checkedout, cancelled"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="company"/>
+                            <field name="drinks_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="isServeDrink"/>
+                        </group>
+                        <group>
+                            <field name="station_id"/>
+                            <field name="host"/>
+                            <field name="checkin"/>
+                            <field name="duration" widget="float_time"/>
+                            <field name="statusCheckin"/>
+<!--                            <button name="send_notification" string="Notification" type="object" class="oe_highlight"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Message">
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

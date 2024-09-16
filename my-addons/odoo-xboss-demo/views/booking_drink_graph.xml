@@ -1,0 +1,16 @@
+<odoo>
+    <record id="drink_graph_action" model="ir.actions.act_window">
+        <field name="name">Drink Usage Report</field>
+        <field name="res_model">booking.visitor</field>
+        <field name="view_mode">graph</field>
+<!--        <field name="arch" type="xml">-->
+<!--            <graph string="Drink Usage Analysis">-->
+<!--                <field name="name" type="row"/>-->
+<!--                <field name="station_id" type="measure"/>-->
+<!--                <group>-->
+<!--                    <field name="drinks_id" />-->
+<!--                </group>-->
+<!--            </graph>-->
+<!--        </field>-->
+    </record>
+</odoo>

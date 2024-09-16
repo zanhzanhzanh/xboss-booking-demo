@@ -1,0 +1,7 @@
+<odoo>
+<!--      <template id="assets_frontend" inherit_id="web.assets_frontend" name="DeckJS">-->
+<!--          <xpath expr="." position="inside">-->
+<!--                <script type="text/javascript" src="/odoo-xboss-demo/static/src/js/deck.js"/>-->
+<!--          </xpath>-->
+<!--      </template>-->
+</odoo>

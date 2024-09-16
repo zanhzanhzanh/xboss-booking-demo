@@ -1,0 +1,31 @@
+<odoo>
+    <record id="drink_action" model="ir.actions.act_window">
+        <field name="name">Drinks</field>
+        <field name="res_model">booking.drink</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_booking_drink_list" model="ir.ui.view">
+        <field name="name">booking.drink.list</field>
+        <field name="model">booking.drink</field>
+        <field name="arch" type="xml">
+            <tree string="Drink">
+                <field name="name"/>
+                <field name="color"/>
+                <field name="image"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_drink_form" model="ir.ui.view">
+        <field name="name">booking.drink.form</field>
+        <field name="model">booking.drink</field>
+        <field name="arch" type="xml">
+            <form string="Drink">
+                <field name="name"/>
+                <field name="color" widget="color_picker"/>
+                <field name="image" widget='image'/>
+            </form>
+        </field>
+    </record>
+</odoo>

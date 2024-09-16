@@ -1,0 +1,225 @@
+<odoo>
+    <record id="station_action" model="ir.actions.act_window">
+        <field name="name">Station</field>
+        <field name="res_model">booking.station</field>
+        <field name="view_mode">kanban,tree,form</field>
+<!--        <field name="context">{'default_station_id': active_id}</field>-->
+    </record>
+
+    <!-- <record id="view_booking_station_list" model="ir.ui.view">
+        <field name="name">booking.station.list</field>
+        <field name="model">booking.station</field>
+        <field name="arch" type="xml">
+            <tree string="Stations">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record> -->
+
+    <record id="view_booking_station_kanban" model="ir.ui.view">
+        <field name="name">booking.station.kanban</field>
+        <field name="model">booking.station</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                         <div class="oe_kanban_global_click">
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                            <div class="row">
+                                <div class="col">
+                                    <button name="action_open_desk" type="object" class="oe_highlight" string="Open Desk"/>
+                                </div>
+                                <div class="col">
+                                    <div><field name="visitor_count" nolabel="1"/> On Site</div>
+                                    <div><field name="planned_count" nolabel="1"/> Planned</div>
+                                    <div><field name="drinks_to_serve_count" nolabel="1"/> Drinks to serve</div>
+                                </div>
+                            </div>
+                            <div class="o-kanban-footer">
+                                <span>Last Check-In: <field name="last_checkin" nolabel="1"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_booking_station_form" model="ir.ui.view">
+        <field name="name">booking.station.form</field>
+        <field name="model">booking.station</field>
+        <field name="arch" type="xml">
+            <form string="Booking Station">
+                <sheet>
+                    <group>
+                        <group>
+                            <div class="o_field_label o_field_widget">
+                                <h5>Frontdesk Name</h5>
+                                <h1>
+                                    <field name="name" nolabel="1"/>
+                                </h1>
+                            </div>
+<!--                            <label for="name" string="Frontdesk Name"/>-->
+<!--                            <field name="name" nolabel="1"/>-->
+                            <group>
+                                <field name="reponsibles_id"/>
+                                <field name="company_id"/>
+                                <field name="kloskUrl"/>
+                            </group>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Options">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <field name="isHostSeletion" class="col-2"/>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="separator"></div> <!-- Đường kẻ phân cách -->
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="isHostSeletion" string="Host Selection" class="col-9"/>
+                                            <div class="description">Allows the visitor to pick the host of the meeting from the list</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2" style="width:9%;">
+                                            <field name="isAuthGuest"/>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="separator"></div> <!-- Đường kẻ phân cách -->
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="isAuthGuest" string="Authenticate Guest"/>
+                                            <div class="description">Request additional information upon registering</div>
+                                            <div>
+                                                <!-- Row for Email -->
+                                                <div>
+                                                    <div> <!-- Tăng khoảng cách giữa label và field -->
+                                                        <label for="emailAuth" string="Email"/>
+                                                    </div>
+                                                    <div> <!-- Tăng kích thước cột chứa field -->
+                                                        <field name="emailAuth" widget="radio"/>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Row for Phone -->
+                                                <div>
+                                                    <div> <!-- Tăng khoảng cách giữa label và field -->
+                                                        <label for="phoneAuth" string="Phone"/>
+                                                    </div>
+                                                    <div> <!-- Tăng kích thước cột chứa field -->
+                                                        <field name="phoneAuth" widget="radio"/>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Row for Organization -->
+                                                <div>
+                                                    <div> <!-- Tăng khoảng cách giữa label và field -->
+                                                        <label for="organizationAuth" string="Organization"/>
+                                                    </div>
+                                                    <div> <!-- Tăng kích thước cột chứa field -->
+                                                        <field name="organizationAuth" widget="radio"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <field name="isEmailNotify"/>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="separator"></div> <!-- Đường kẻ phân cách -->
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="isEmailNotify" string="Notify by email"/>
+                                            <div class="description">Notify the host on guest arrival</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <field name="isSmsNotify"/>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="separator"></div> <!-- Đường kẻ phân cách -->
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="isSmsNotify" string="Notify by SMS"/>
+                                            <div class="description">Send an SMS to the host on guest arrival</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <field name="isSelfCheckin"/>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="separator"></div> <!-- Đường kẻ phân cách -->
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="isSelfCheckin" string="Self Check-In"/>
+                                            <div class="description">Show a QR code on the welcome screen to check-in from mobile</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <field name="isOfferDrinks"/>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="separator"></div> <!-- Đường kẻ phân cách -->
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="isOfferDrinks" string="Offer Drinks"/>
+                                            <div class="description">Allow visitor to select a drink during registration</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <field name="isDicussNotify"/>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="separator"></div> <!-- Đường kẻ phân cách -->
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="isDicussNotify" string="Notify by dicuss"/>
+                                            <div class="description">Open host chat window when guest arrival</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="separator"></div> <!-- Đường kẻ phân cách -->
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="theme" string="Theme"/>
+                                            <div class="description">Select the color of the Desk</div>
+                                            <field name="theme" widget="radio"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+                        <page string="Side Message">
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

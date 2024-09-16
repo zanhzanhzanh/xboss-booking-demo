@@ -1,0 +1,18 @@
+<odoo>
+    <template id="booking_desk_success_views" name="Success">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="container text-center" style="margin-top: 100px;">
+                    <div class="icon-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/2048px-Flat_tick_icon.svg.png" alt="Success" style="width: 100px; height: 100px;"></img>
+                    </div>
+                    <h2>Thank you for registering!</h2>
+                    <p>Your drink is on the way.</p>
+                    <div class="button-container">
+                        <button id="success-btn" type="button" class="btn btn-light">Close</button>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

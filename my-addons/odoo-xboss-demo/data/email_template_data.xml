@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_booking" model="mail.template">
+            <field name="name">Request For Meeting</field>
+            <field name="subject">Request for a Short Meeting with {{ object.name }}</field>
+            <field name="model_id" ref="odoo-xboss-demo.model_booking_visitor"/>
+            <field name="email_to">{{ object.host.email }}</field>
+            <field name="partner_to">{{ object.host.partner_id.id }}</field>
+            <field name="description">Sent automatically to the user that request for meeting</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" style="padding-top: 16px; background-color: #F1F1F1; color: #454748; width: 100%; border-collapse:separate;">
+                    <tr><td align="center">
+                        <table border="0" width="590" cellpadding="0" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;" summary="o_mail_notification">
+                            <tbody>
+                                <!-- HEADER -->
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table width="590" border="0" cellpadding="0" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="middle">
+                                                    <span style="font-size: 10px;">Request Meeting From</span><br/>
+                                                    <span style="font-size: 20px; font-weight: bold;" t-out="object.name or ''"></span>
+                                                </td>
+                                                <td valign="middle" align="right">
+                                                    <img t-attf-src="/logo.png?company={{ object.host.company_id.id }}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" t-att-alt="object.host.company_id.name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="text-align:center;">
+                                                    <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- CONTENT -->
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table width="590" border="0" cellpadding="0" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tr><td valign="top" style="font-size: 14px;">
+                                                <div>
+                                                    Dear <t t-out="object.host.name or ''"></t><br/>
+                                                    <strong t-out="object.name or ''"></strong> need to meet you!<br/>
+                                                    <br/>
+                                                    <br/><br/>
+                                                    Thank you,
+                                                        <br />
+                                                        <t t-out="object.name or ''"></t>
+                                                </div>
+                                            </td></tr>
+                                            <tr><td style="text-align:center;">
+                                              <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                            </td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td></tr>
+                </table>
+            </field>
+<!--            <field name="lang">{{ object.user_id.lang }}</field>-->
+<!--            <field name="auto_delete" eval="True"/>-->
+        </record>
+    </data>
+</odoo>

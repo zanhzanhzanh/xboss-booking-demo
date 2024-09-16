@@ -1,0 +1,95 @@
+<odoo>
+    <template id="booking_desk_form_views" name="Form">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5">
+                        <h3 class="text-center text-secondary mt-5 mb-3">Who are you?</h3>
+                        <form id="checkin-form" class="w-100 mb-5 mx-auto px-3 pt-3 needs-validation">
+                            <div class="form-group">
+                                <label for="Name">Your name</label>
+                                <input id="name" type="text" class="form-control" placeholder="Name" required="1"></input>
+                            </div>
+
+<!--                            Phone-->
+                            <t t-if="allowPhone == 'required'">
+                                <div class="form-group mt-2">
+                                    <label for="phone">Your Phone Number</label>
+                                    <input id="phone" type="phone" class="form-control" placeholder="Phone" required="1"></input>
+                                    <div class="invalid-feedback">
+                                        Please fill out this field.
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-if="allowPhone == 'optional'">
+                                <div class="form-group mt-2">
+                                    <label for="phone">Your Phone Number</label>
+                                    <input id="phone" type="phone" class="form-control" placeholder="Phone (Optional)"></input>
+                                    <div class="invalid-feedback">
+                                        Please fill out this field.
+                                    </div>
+                                </div>
+                            </t>
+
+<!--                            Email-->
+                            <t t-if="allowEmail == 'required'">
+                                <div class="form-group mt-2">
+                                    <label for="email">Your Email</label>
+                                    <input id="email" type="email" class="form-control" placeholder="Email" required="1"></input>
+                                    <div class="invalid-feedback">
+                                        Please fill out this field.
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-if="allowEmail == 'optional'">
+                                <div class="form-group mt-2">
+                                    <label for="email">Your Email</label>
+                                    <input id="email" type="email" class="form-control" placeholder="Email (Optional)"></input>
+                                    <div class="invalid-feedback">
+                                        Please fill out this field.
+                                    </div>
+                                </div>
+                            </t>
+
+<!--                            Company-->
+                            <t t-if="allowOrganization == 'required'">
+                                <div class="form-group mt-2">
+                                    <label for="company">Your Company</label>
+                                    <input id="company" type="text" class="form-control" placeholder="Your Organization" required="1"></input>
+                                    <div class="invalid-feedback">
+                                        Please fill out this field.
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-if="allowOrganization == 'optional'">
+                                <div class="form-group mt-2">
+                                    <label for="company">Your Company</label>
+                                    <input id="company" type="text" class="form-control" placeholder="Your Organization (Optional)"></input>
+                                    <div class="invalid-feedback">
+                                        Please fill out this field.
+                                    </div>
+                                </div>
+                            </t>
+
+<!--                            Host Selection-->
+                            <t t-if="allowHost">
+                                <div class="form-group mt-2">
+                                    <label for="meeting">Who are you visiting?</label>
+                                    <select id="meeting" name="meeting" class="form-control" required="1">
+                                        <t t-foreach="users" t-as="user">
+                                            <option t-att-value="user.id" t-esc="user.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                            </t>
+
+                            <div class="form-group text-center mt-4">
+                                <button id="deck-form-btn" class="btn btn btn-primary px-5">Check In</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

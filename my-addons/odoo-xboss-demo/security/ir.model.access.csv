@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_station_user,access_booking_station_user,model_booking_station,base.group_user,1,1,1,1
+access_visitor_user,access_booking_visitor_user,model_booking_visitor,base.group_user,1,1,1,1
+access_drink_user,access_booking_drink_user,model_booking_drink,base.group_user,1,1,1,1
+access_desk_user,access_booking_desk_user,model_booking_desk,base.group_user,1,1,1,1

@@ -1,0 +1,9 @@
+<odoo>
+  <data>
+<!--    <template id="assets_backend" name="new_assets" inherit_id="web.assets_backend">-->
+<!--      <xpath expr="." position="inside">-->
+<!--        <link rel="stylesheet" href="my-addons/odoo-xboss-demo/static/src/css/booking_station_views.css"/>-->
+<!--      </xpath>-->
+<!--    </template>-->
+  </data>
+</odoo>
